@@ -16,9 +16,7 @@ export function moneyFormat(x?: number, decimal: number = 2) {
   return x.toLocaleString("en-US") + (x - Math.floor(x) == 0 && decimal > 0 ? '.' + '0'.repeat(decimal) : '')
   // return x.toLocaleString() + (x - Math.floor(x) == 0 ? '.00' : '')
 
-
 }
-
 
 export function currSymbol(currency?: string) {
   switch (currency) {
@@ -42,3 +40,4 @@ export function yesterday() {
 export function today() {
   return new Date().toISOString().substring(0, 10)
 }
+

@@ -21,7 +21,7 @@ const Pagination: FC<PaginationProps> = ({
 
 
   return (
-    <nav className={`flex flex-row items-center justify-between gap-1 text-xs md:gap-2 md:text-base font-medium w-full`}>
+    <div className={`flex flex-row w-full items-center justify-between gap-1 text-xs md:gap-2 md:text-base font-medium`}>
       <div className='flex flex-row items-center justify-center gap-2 px-2 py-2 rounded-md border border-dashed text-gray-500 w-20'
         title={`Total Documents:${pagination?.totalDocs}`}>
         <div>{pagination?.totalDocs}</div>
@@ -53,7 +53,7 @@ const Pagination: FC<PaginationProps> = ({
         })}
       </div>
 
-    </nav>
+    </div>
   )
 }
 
