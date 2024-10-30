@@ -1,11 +1,15 @@
 "use client"
 
+import { BreadcrumbAbi } from '@/components/breadcrumb'
 import ButtonLink from '@/components/button-link'
 
 export default function DefinesPage() {
 
   return (<>
-    <h1>Tanimlar</h1>
+    <BreadcrumbAbi list={[
+      { href: '/defines', children: <span>Tanimlar</span> },
+    ]} />
+    <h1><i className="fa-solid fa-list-check me-2"></i>Tanımlar</h1>
     <hr />
     <div className='grid grid-cols-1 md:grid-cols-4 gap-4 mt-4'>
       <ButtonLink href='/defines/itemTypes'><i className="fa-solid fa-layer-group"></i> Stok Cinsleri</ButtonLink>

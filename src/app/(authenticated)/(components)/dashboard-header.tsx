@@ -19,15 +19,15 @@ export function DashboardHeader({ }) {
         </CustomLink>
         <nav className=" hidden gap-4 text-sm font-medium md:flex">
           <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/home">
-            <i className="fa-solid fa-gauge-high me-2 text-lg"></i>
+            <i className="fa-solid fa-house-chimney-window me-2 text-lg"></i>
             Ana Sayfa
           </CustomLink>
           <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/members">
             <i className="fa-solid fa-file-invoice me-2 text-lg"></i>
             Sipariş
           </CustomLink>
-          <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/members">
-            <i className="fa-solid fa-cart-flatbed me-2 text-lg"></i>
+          <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/inventory">
+            <i className="fa-solid fa-boxes-stacked me-2 text-lg"></i>
             Stok
           </CustomLink>
           <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/defines">

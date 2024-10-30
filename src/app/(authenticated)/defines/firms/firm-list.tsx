@@ -74,7 +74,6 @@ export function FirmList({ type }: Props) {
         </div>
 
       </div>
-
       <hr />
       {!loading && <>
         <Table className=''>
@@ -82,7 +81,7 @@ export function FirmList({ type }: Props) {
           <TableHeader >
             <TableRow >
               <TableHead>Isim</TableHead>
-              <TableHead>Artikel</TableHead>
+              <TableHead className='p-1'>Artikel</TableHead>
               <TableHead className="text-center w-14 text-2xl">
                 <ButtonLink href={`/defines/firms/${type == 'customer' ? 'newCustomer' : 'newVendor'}`} type={'success'}>
                   <i className="fa-solid fa-square-plus"></i>

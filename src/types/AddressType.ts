@@ -16,15 +16,7 @@ export interface AddressType {
   region?: string
   district?: string
   country?: CountryType
-  billingInfo?: {
-    individual?: boolean
-    companyName?: string
-    firstName?: string
-    lastName?: string
-    taxOffice?: string
-    taxNumber?: string
-    idCardNo?: string
-  }
+
 }
 
 export interface CountryType {

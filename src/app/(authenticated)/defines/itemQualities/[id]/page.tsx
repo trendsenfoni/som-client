@@ -13,6 +13,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { ItemQuality } from '@/types/ItemQuality'
 import { ButtonConfirm } from '@/components/button-confirm'
+import { BreadcrumbAbi } from '@/components/breadcrumb'
 interface Props {
   params: {
     id?: string
@@ -54,6 +55,11 @@ export default function PageEdit({ params }: Props) {
     }
   }, [token])
   return (<div>
+    <BreadcrumbAbi list={[
+      { href: '/defines', children: "Tanımlar" },
+      { href: '/defines/itemQualities', children: "Kalite Tanımları" },
+      { children: params.id != 'addnew' ? 'Düzelt' : 'Yeni Kalite' },
+    ]} />
     <div className="w-fu11ll m11ax-w-3xl mx-auto py-8 px-0 md:px-6">
 
       <div className="grid gap-8">

@@ -21,6 +21,7 @@ import {
 import { SearchIcon } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import Pagination from '@/components/pagination'
+import { BreadcrumbAbi } from '@/components/breadcrumb'
 
 export default function DefinesPage() {
   const [token, setToken] = useState('')
@@ -49,9 +50,13 @@ export default function DefinesPage() {
   useEffect(() => { token && load(1, '') }, [token])
 
   return (<>
+    <BreadcrumbAbi list={[
+      { href: '/defines', children: "Tanımlar" },
+      { href: '/defines/itemTypes', children: "Stok Cinsleri" },
+    ]} />
     <div className='flex flex-col gap-4'>
       <div className='flex justify-between'>
-        <h1 className='text-3xl ms-2'><i className="fa-solid fa-layer-group"></i> Stok Cinsleri</h1>
+        <h1 className=''><i className="fa-solid fa-layer-group"></i> Stok Cinsleri</h1>
         <div className="relative">
           <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
           <Input
