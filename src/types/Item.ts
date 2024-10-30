@@ -7,5 +7,7 @@ export interface Item {
   itemQuality?: ItemQuality
   name?: string
   description?: string
+  vatRate?: number
+  withHoldingTaxRate?: number
   passive?: boolean
 }

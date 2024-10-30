@@ -9,16 +9,11 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import CustomLink from '@/components/custom-link'
-import { Textarea } from '@/components/ui/textarea'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Item } from '@/types/Item'
 import { ButtonConfirm } from '@/components/button-confirm'
-import { ItemType } from '@/types/ItemType'
-import { ItemQuality } from '@/types/ItemQuality'
-import { showError, showInfo } from '@/lib/showToast'
 
 import { ComboboxItemTypeList } from '@/app/(authenticated)/(components)/combobox-itemTypes'
 import { ComboboxItemQualityList } from '@/app/(authenticated)/(components)/combobox-itemQualities'
+import { FirmType } from '@/types/FirmType'
 
 interface Props {
   params: {
@@ -28,16 +23,13 @@ interface Props {
 export default function PageEdit({ params }: Props) {
   const router = useRouter()
   const [token, settoken] = useState('')
-  const [item, setItem] = useState<Item>({})
-  const [itemType, setItemType] = useState<ItemType | undefined>()
-  const [itemQuality, setItemQuality] = useState<ItemQuality | undefined>()
+  const [firm, setFirm] = useState<FirmType>({ type: params.id == 'newCustomer' ? 'customer' : 'vendor' })
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
 
   const save = () => {
-    console.log('save item:', item)
     if (params.id == 'addnew') {
-      postItem(`/db/items/${params.id}`, token, item)
+      postItem(`/db/firms/${params.id}`, token, firm)
         .then(result => {
           toast({ title: 'Kayıt başarılı', duration: 700 })
           setTimeout(() => router.back(), 700)
@@ -45,7 +37,7 @@ export default function PageEdit({ params }: Props) {
         .catch(err => toast({ title: 'Error', description: err || '', variant: 'destructive' }))
     } else {
 
-      putItem(`/db/items/${params.id}`, token, item)
+      putItem(`/db/items/${params.id}`, token, firm)
         .then(result => {
           toast({ title: 'Kayıt başarılı', duration: 700 })
           setTimeout(() => router.back(), 700)
@@ -62,9 +54,7 @@ export default function PageEdit({ params }: Props) {
         setLoading(true)
         getItem(`/db/items/${params.id}`, token)
           .then(result => {
-            setItem(result as Item)
-            setItemType((result as Item).itemType)
-            setItemQuality((result as Item).itemQuality)
+            setFirm(result as FirmType)
           })
           .catch(err => toast({ title: 'Error', description: err || '', variant: 'destructive' }))
           .finally(() => setLoading(false))
@@ -76,53 +66,12 @@ export default function PageEdit({ params }: Props) {
       <div className=" mx-auto py-8 px-0 md:px-6">
 
         <div className="grid gap-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 
-            <div className='flex flex-col gap-2'>
-              <Label>Cins {itemType && <>{itemType.name}</>}</Label>
-              <ComboboxItemTypeList defaultValue={itemType} onChange={e => {
-                setItemType(e)
-                setItem({ ...item, itemType: e })
-              }} />
-
-            </div>
-            <div className='flex flex-col gap-2'>
-              <Label>Kalite {itemQuality && <>{itemQuality.name}</>}</Label>
-              <ComboboxItemQualityList defaultValue={itemQuality} onChange={e => {
-                setItemQuality(e)
-                setItem({ ...item, itemQuality: e })
-              }} />
-
-            </div>
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 
             <div className=''>
               <Label>İsim</Label>
-              <Input defaultValue={item.name} onChange={e => setItem({ ...item, name: e.target.value })} />
-            </div>
-            <div className='col-span-3'>
-              <Label>Açıklama</Label>
-              <Input defaultValue={item.description} onChange={e => setItem({ ...item, description: e.target.value })} />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-
-            <div className=''>
-              <Label>Kdv%</Label>
-              <Input type='number' defaultValue={item.vatRate} onChange={e => {
-                setItem({ ...item, vatRate: isNaN(Number(e.target.value)) ? 0 : Number(e.target.value) })
-              }}
-                onFocus={e => e.target.select()}
-              />
-            </div>
-            <div className=''>
-              <Label>Tevkifat%</Label>
-              <Input type='number' defaultValue={item.withHoldingTaxRate} onChange={e => {
-                setItem({ ...item, withHoldingTaxRate: isNaN(Number(e.target.value)) ? 0 : Number(e.target.value) })
-              }}
-                onFocus={e => e.target.select()}
-              />
+              <Input defaultValue={firm.name} onChange={e => setFirm({ ...firm, name: e.target.value })} />
             </div>
           </div>
         </div>
@@ -131,14 +80,14 @@ export default function PageEdit({ params }: Props) {
             {params.id != 'addnew' &&
               <ButtonConfirm
                 text='Kayıt silinsin mi?'
-                description={`${item && item.name}`}
+                description={`${firm && firm.name}`}
                 onOk={() => {
                   deleteItem(`/db/items/${params.id}`, token)
                     .then(result => {
-                      showInfo('Kayıt silindi')
+                      toast({ title: 'Kayıt silindi', duration: 700 })
                       setTimeout(() => router.back(), 700)
                     })
-                    .catch(showError)
+                    .catch(err => toast({ title: 'Error', description: err || '', variant: 'destructive' }))
                 }}>
                 <div className='bg-red-600 text-white px-4 py-2 rounded-md'>
                   <i className='fa-solid fa-trash-alt'></i>

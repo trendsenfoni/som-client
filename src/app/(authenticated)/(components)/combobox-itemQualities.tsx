@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Check, ChevronsUpDown } from "lucide-react"
 import { getList } from '@/lib/fetch'
 import { showError } from '@/lib/showToast'
-import { ItemType } from '@/types/ItemType'
+import { ItemQuality } from '@/types/ItemQuality'
 import { useRouter } from 'next/navigation'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -25,30 +25,28 @@ import Cookies from 'js-cookie'
 import { useToast } from '@/components/ui/use-toast'
 
 interface Props {
-  defaultValue?: ItemType
-  onChange?: (val?: ItemType) => void
+  defaultValue?: ItemQuality
+  onChange?: (val?: ItemQuality) => void
   width?: string
 }
-export function ComboboxItemTypeList({
+export function ComboboxItemQualityList({
   defaultValue,
   onChange,
   width = "w-300px"
 }: Props) {
   const [open, setOpen] = useState(false)
   const [token, settoken] = useState('')
-  const [obj, setObj] = useState<ItemType | undefined>(defaultValue)
-  const [list, setList] = useState<ItemType[]>([])
-  // const [value, setValue] = useState("")
+  const [obj, setObj] = useState<ItemQuality | undefined>(defaultValue)
+  const [list, setList] = useState<ItemQuality[]>([])
   const [search, setSearch] = useState('')
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
 
   const load = (s?: string) => {
-
     setLoading(true)
-    getList(`/db/itemTypes?pageSize=10&search=${s || search || ''}`, token)
+    getList(`/db/itemQualities?pageSize=10&search=${s || search || ''}`, token)
       .then(result => {
-        setList(result.docs as ItemType[])
+        setList(result.docs as ItemQuality[])
       })
       .catch(err => toast({ title: 'Error', description: err || '', variant: 'destructive' }))
       .finally(() => setLoading(false))
@@ -83,7 +81,6 @@ export function ComboboxItemTypeList({
               setSearch(e)
             }}
           />
-
           <CommandList>
             <CommandEmpty>Kayıt bulunamadı</CommandEmpty>
             <CommandGroup>
