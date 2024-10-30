@@ -24,6 +24,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { ComboboxItemTypeList } from '@/app/(authenticated)/(components)/combobox-itemTypes'
 
 interface Props {
   params: {
@@ -55,11 +56,7 @@ export default function PageEdit({ params }: Props) {
     }
   }
 
-  const loadItemTypes = (search: string) => {
-    getList(`/db/itemTypes?pageSize=30&search=${search}`, token)
-      .then(result => setItemTypeList(result.docs as ItemType[]))
-      .catch(showError)
-  }
+
   const loadItemQualities = (search: string) => {
     getList(`/db/itemQualities?pageSize=30&search=${search}`, token)
       .then(result => setItemQualityList(result.docs as ItemQuality[]))
@@ -86,6 +83,15 @@ export default function PageEdit({ params }: Props) {
 
       <div className="grid gap-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+
+          <div className='flex flex-col gap-2'>
+            <Label>Cins</Label>
+            <ComboboxItemTypeList />
+            {/* {ComboboxItemTypeList()} */}
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+
           <div className=''>
             <Label>İsim</Label>
             <Input defaultValue={item.name} onChange={e => setItem({ ...item, name: e.target.value })} />
