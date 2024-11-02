@@ -38,7 +38,7 @@ export function ComboboxAddressList({
   width = "w-300px"
 }: Props) {
   const [open, setOpen] = useState(false)
-  const [token, settoken] = useState('')
+  const [token, setToken] = useState('')
   const [obj, setObj] = useState<AddressType | undefined>(defaultValue)
   const [list, setList] = useState<AddressType[]>([])
   // const [value, setValue] = useState("")
@@ -57,7 +57,7 @@ export function ComboboxAddressList({
       .finally(() => setLoading(false))
   }
 
-  useEffect(() => { !token && settoken(Cookies.get('token') || '') }, [])
+  useEffect(() => { !token && setToken(Cookies.get('token') || '') }, [])
   useEffect(() => { token && load() }, [token])
   useEffect(() => { token && load() }, [token, search])
 

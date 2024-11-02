@@ -12,37 +12,33 @@ import Link from 'next/link'
 
 export function DashboardHeader({ }) {
   return (
-    <header className="flex h-16 items-center justify-between border-b bg-white px-0 md:px-2 dark:border-gray-800 dark:bg-gray-950"    >
+    <header className="flex h-16 items-center justify-between bord11er-b bg-white px-0 md:px-2 dark:border-gray-800 dark:bg-gray-950"    >
       <div className="flex flex-row items-center gap-4">
         <CustomLink className="" href="/home">
           <HeaderLogo2 className='' />
         </CustomLink>
         <nav className=" hidden gap-4 text-sm font-medium md:flex">
           <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/home">
-            <i className="fa-solid fa-house-chimney-window me-2 text-lg"></i>
+            <i className="fa-solid fa-house-chimney-window me-2 text-lg text-primary"></i>
             Ana Sayfa
           </CustomLink>
-          <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/members">
-            <i className="fa-solid fa-file-invoice me-2 text-lg"></i>
-            Sipariş
+          <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/sales">
+            <i className="fa-solid fa-dragon me-2 text-lg text-primary"></i>
+            Satış
+          </CustomLink>
+          <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/purchasing">
+            <i className="fa-solid fa-dolly me-2 text-lg text-primary"></i>
+            Satın Alma
           </CustomLink>
           <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/inventory">
-            <i className="fa-solid fa-boxes-stacked me-2 text-lg"></i>
+            <i className="fa-solid fa-boxes-stacked me-2 text-lg text-primary"></i>
             Stok
           </CustomLink>
           <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/defines">
-            <i className="fa-solid fa-list-check me-2 text-lg"></i>
+            <i className="fa-solid fa-list-check me-2 text-lg text-primary"></i>
             Tanımlar
           </CustomLink>
-          <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/reports">
-            <i className="fa-solid fa-chart-line me-2 text-lg"></i>
-            Raporlar
-          </CustomLink>
-          <div className='border-r'></div>
-          <CustomLink className="rounded-md px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/settings">
-            <i className='fa-solid fa-gears me-2 text-lg'></i>
-            Ayarlar
-          </CustomLink>
+
         </nav>
       </div>
       <div className="flex items-center gap-2">
@@ -68,24 +64,42 @@ function MobileMenu() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" >
         <DropdownMenuItem>
-          <Link href="/home" className='flex items-center '>
-            <i className="fa-solid fa-gauge-high me-2 text-lg"></i>
-            Ana Ekran
-          </Link>
+          <CustomLink className="rounded-md  py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/home">
+            <i className="fa-solid fa-house-chimney-window me-2 text-lg text-primary"></i>
+            Ana Sayfa
+          </CustomLink>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link href="/members" className='flex items-center '>
-            <i className="fa-solid fa-chart-line me-2 text-lg"></i>
-            Üyeler
-          </Link>
+          <CustomLink className="rounded-md  py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/sales">
+            <i className="fa-solid fa-dragon me-2 text-lg text-primary"></i>
+            Satış
+          </CustomLink>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <CustomLink className="rounded-md  py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/purchasing">
+            <i className="fa-solid fa-dolly me-2 text-lg text-primary"></i>
+            Satın Alma
+          </CustomLink>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <CustomLink className="rounded-md py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/inventory">
+            <i className="fa-solid fa-boxes-stacked me-2 text-lg text-primary"></i>
+            Stok
+          </CustomLink>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <CustomLink className="rounded-md  py-2 hover:bg-gray-100 dark:hover:bg-gray-800" href="/defines">
+            <i className="fa-solid fa-list-check me-2 text-lg text-primary"></i>
+            Tanımlar
+          </CustomLink>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem >
+        {/* <DropdownMenuItem >
           <Link href="/settings" className='flex items-center'>
             <i className='fa-solid fa-gears me-2 text-lg'></i>
             Ayarlar
           </Link>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
 
       </DropdownMenuContent>
     </DropdownMenu>

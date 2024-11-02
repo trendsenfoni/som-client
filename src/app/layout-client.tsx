@@ -14,7 +14,7 @@ const ComponentForSessionProvider = () => {
 const LayoutClientSide = () => {
   const router = useRouter()
   const pathName = usePathname()
-  if (Cookies.get('token') && pathName.startsWith('/auth')) {
+  if (Cookies.get('token') && (pathName.startsWith('/auth') || pathName == '/')) {
     router.push('/home')
   }
   return <>

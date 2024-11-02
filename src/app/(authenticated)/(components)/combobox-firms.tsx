@@ -3,9 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { Check, ChevronsUpDown } from "lucide-react"
 import { getList } from '@/lib/fetch'
-import { showError } from '@/lib/showToast'
-import { ItemQuality } from '@/types/ItemQuality'
-import { useRouter } from 'next/navigation'
+import { FirmType } from '@/types/FirmType'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -25,38 +23,41 @@ import Cookies from 'js-cookie'
 import { useToast } from '@/components/ui/use-toast'
 
 interface Props {
-  defaultValue?: ItemQuality
-  onChange?: (val?: ItemQuality) => void
+  type?: string | 'customer' | 'vendor'
+  defaultValue?: FirmType
+  onChange?: (val?: FirmType) => void
   width?: string
 }
-export function ComboboxItemQualityList({
+export function ComboboxFirmList({
+  type,
   defaultValue,
   onChange,
   width = "w-300px"
 }: Props) {
   const [open, setOpen] = useState(false)
-  const [token, setToken] = useState('')
-  const [obj, setObj] = useState<ItemQuality | undefined>(defaultValue)
-  const [list, setList] = useState<ItemQuality[]>([])
+  const [token, settoken] = useState('')
+  const [obj, setObj] = useState<FirmType | undefined>(defaultValue)
+  const [list, setList] = useState<FirmType[]>([])
   const [search, setSearch] = useState('')
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
 
   const load = (s?: string) => {
+
     setLoading(true)
-    getList(`/db/itemQualities?pageSize=10&search=${s || search || ''}`, token)
+    getList(`/db/firms?type=${type}&pageSize=10&search=${s || search || ''}`, token)
       .then(result => {
-        setList(result.docs as ItemQuality[])
+        setList(result.docs as FirmType[])
       })
       .catch(err => toast({ title: 'Error', description: err || '', variant: 'destructive' }))
       .finally(() => setLoading(false))
   }
 
-  useEffect(() => { !token && setToken(Cookies.get('token') || '') }, [])
+  useEffect(() => { !token && settoken(Cookies.get('token') || '') }, [])
   useEffect(() => { token && load() }, [token])
   useEffect(() => { token && load() }, [token, search])
 
-  return (<>
+  return (<div>
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         {!loading &&
@@ -81,6 +82,7 @@ export function ComboboxItemQualityList({
               setSearch(e)
             }}
           />
+
           <CommandList>
             <CommandEmpty>Kayıt bulunamadı</CommandEmpty>
             <CommandGroup>
@@ -109,5 +111,5 @@ export function ComboboxItemQualityList({
         </Command>
       </PopoverContent>
     </Popover>
-  </>)
+  </div>)
 }

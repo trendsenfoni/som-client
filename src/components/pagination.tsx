@@ -33,7 +33,7 @@ const Pagination: FC<PaginationProps> = ({
           if (no == pagination?.page) {
             return <span
               key={index}
-              className={`inline-flex w-11 h-11 items-center justify-center rounded-full bg-primary text-neutral-100 dark:text-neutral-700`}
+              className={`inline-flex w-11 h-11 items-center justify-center rounded-full bg-primary text-gray-400 dark:text-gray-400`}
             >
               {no}
             </span>

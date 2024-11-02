@@ -37,7 +37,7 @@ export default function PageEdit({ params }: Props) {
   const save = () => {
     console.log('save item:', item)
     if (params.id == 'addnew') {
-      postItem(`/db/items/${params.id}`, token, item)
+      postItem(`/db/items`, token, item)
         .then(result => {
           toast({ title: 'Kayıt başarılı', duration: 700 })
           setTimeout(() => router.back(), 700)

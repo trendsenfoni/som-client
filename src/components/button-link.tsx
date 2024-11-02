@@ -28,7 +28,7 @@ export function ButtonLink({
   return (
     <Link
       href={href}
-      className={`px-2 py-1 rounded-md hover:opacity-50 ${btnClass} ${className} `}
+      className={`px-2 py-1 rounded-md hover:opacity-50 text-xl md:text-2xl ${btnClass} ${className} `}
     >
       {children}
     </Link>)

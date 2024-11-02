@@ -67,7 +67,7 @@ const DashboardUserMenu: FC<DashboardUserMenuProps> = ({ }) => {
         <DropdownMenuItem >
           <Link href="/settings" className='flex items-center'>
             <i className='fa-solid fa-gears me-2 text-lg'></i>
-            Settings
+            Ayarlar
           </Link>
         </DropdownMenuItem>
 

@@ -28,7 +28,7 @@ export default function PageEdit({ params }: Props) {
 
   const save = () => {
     if (params.id == 'addnew') {
-      postItem(`/db/itemTypes/${params.id}`, token, itemType)
+      postItem(`/db/itemTypes`, token, itemType)
         .then(result => {
           toast({ description: 'Kayit basarili' })
           setTimeout(() => router.back(), 1000)

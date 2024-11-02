@@ -35,7 +35,7 @@ export function ComboboxItemTypeList({
   width = "w-300px"
 }: Props) {
   const [open, setOpen] = useState(false)
-  const [token, settoken] = useState('')
+  const [token, setToken] = useState('')
   const [obj, setObj] = useState<ItemType | undefined>(defaultValue)
   const [list, setList] = useState<ItemType[]>([])
   // const [value, setValue] = useState("")
@@ -54,7 +54,7 @@ export function ComboboxItemTypeList({
       .finally(() => setLoading(false))
   }
 
-  useEffect(() => { !token && settoken(Cookies.get('token') || '') }, [])
+  useEffect(() => { !token && setToken(Cookies.get('token') || '') }, [])
   useEffect(() => { token && load() }, [token])
   useEffect(() => { token && load() }, [token, search])
 
