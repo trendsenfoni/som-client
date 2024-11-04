@@ -14,9 +14,15 @@ const ComponentForSessionProvider = () => {
 const LayoutClientSide = () => {
   const router = useRouter()
   const pathName = usePathname()
-  if (Cookies.get('token') && (pathName.startsWith('/auth') || pathName == '/')) {
-    router.push('/home')
-  }
+  useEffect(() => {
+    if (Cookies.get('token') && (pathName.startsWith('/auth') || pathName == '/')) {
+      // if (Cookies.get('token') && pathName.startsWith('/auth')) {
+      router.push('/home')
+    } else if (!Cookies.get('token') && !pathName.startsWith('/auth')) {
+      router.push('/auth/login')
+    }
+  }, [])
+
   return <>
     {/* <ComponentForSessionProvider /> */}
   </>

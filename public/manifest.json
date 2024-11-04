@@ -1,14 +1,14 @@
 {
-  "background_color": "#111127",
-  "description": "Trend Senfoni Business Report App",
+  "background_color": "#070718",
+  "description": "Guven Sac Tedarik Yonetim Sistemi",
   "dir": "ltr",
   "display": "standalone",
-  "name": "TrendSenfoni",
+  "name": "GuvenSac",
   "orientation": "portrait-primary",
   "scope": "/",
-  "short_name": "TrendSenfoni",
+  "short_name": "GuvenSac",
   "start_url": "/",
-  "theme_color": "#3366ff",
+  "theme_color": "#a82925",
   "prefer_related_applications": false,
   "display_override": [
     "window-controls-overlay",
@@ -38,21 +38,10 @@
   ],
   "id": "/",
   "lang": "en",
-  "shortcuts": [
-    {
-      "name": "Dashboard",
-      "url": "/pwa/shortcuts/dashboard",
-      "description": "Dashboard"
-    }
-  ],
   "categories": [
     "business",
     "finance",
-    "productivity",
-    "shopping",
-    "social",
-    "travel",
-    "utilities"
+    "productivity"
   ],
   "edge_side_panel": {
     "preferred_width": 600

@@ -20,7 +20,7 @@ const DatabasesPage: FC<Props> = ({ params }) => {
   console.log('params:', params)
   const router = useRouter()
   const [token, setToken] = useState('')
-  const [database, setDatabase] = useState<DatabaseType | null>(null)
+  const [database, setDatabase] = useState<DatabaseType>({})
 
   const save = () => {
     putItem(`/databases/${params.id}`, token, database)
@@ -43,10 +43,7 @@ const DatabasesPage: FC<Props> = ({ params }) => {
   return (<>
     <div className='space-y-4'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-        <div className='flex flex-col gap-2'>
-          <Label>Name</Label>
-          <Input defaultValue={database?.name} onChange={e => setDatabase({ ...database, name: e.target.value })} />
-        </div>
+
         <div className='flex flex-col gap-2'>
           <Label>Identifier</Label>
           <Input defaultValue={database?.identifier} onChange={e => setDatabase({ ...database, identifier: e.target.value })} />

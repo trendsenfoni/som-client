@@ -1,6 +1,6 @@
 
 
-const IndexPage = () => {
+export default function IndexPage() {
 
   return (
     <div className='rel11ative w-full h-screen flex justify-center items-center'>
@@ -10,4 +10,3 @@ const IndexPage = () => {
     </div>)
 }
 
-export default IndexPage

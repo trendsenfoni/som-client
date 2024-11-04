@@ -39,8 +39,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={inter.className} suppressHydrationWarning >
-
         <LayoutClientSide />
+
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -49,6 +49,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 
         >
           <Suspense >
+
             {children}
 
             <Toaster />
