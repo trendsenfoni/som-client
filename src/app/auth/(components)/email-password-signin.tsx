@@ -26,7 +26,8 @@ export default function EMailPasswordSignIn({
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const loginWithEmailPassword = () => {
-    postItem('/auth/login', '', { email: email, password: password })
+    const deviceId = Cookies.get('deviceId')
+    postItem('/auth/login', '', { email: email, password: password, deviceId: deviceId })
       .then(result => {
         console.log('EMailPasswordSignIn result:', result)
         Cookies.set('token', result.token, { secure: true })

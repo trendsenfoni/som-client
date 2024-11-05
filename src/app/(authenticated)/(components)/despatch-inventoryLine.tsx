@@ -20,6 +20,7 @@ import { InventoryType } from '@/types/InventoryType'
 import { DespatchType } from '@/types/DespatchType'
 import { getItem } from '@/lib/fetch'
 import { ComboboxItemList } from './combobox-items'
+import { moneyFormat } from '@/lib/utils'
 
 interface Props {
   className?: string
@@ -51,11 +52,26 @@ export function DespatchInventoryLine({
         <ComboboxItemList width='w-[300px]' defaultValue={inventory?.item} onChange={e => setInventory({ ...inventory, item: e })} />
       </div>
       <div>
-        <Label>Aırlık</Label>
+        <Label>Miktar ({inventory?.item?.unit})</Label>
+        <Input value={inventory?.quantity} readOnly />
+      </div>
+      <div>
+        <Label>Ağırlık</Label>
         <Input defaultValue={inventory?.weight} onChange={e => {
           let val = isNaN(Number(e.target.value)) ? 0 : Number(e.target.value)
           setInventory({ ...inventory, weight: val, quantity: val / 1000 })
         }} />
+      </div>
+      <div>
+        <Label>Fiyat</Label>
+        <Input defaultValue={inventory?.price} onChange={e => {
+          let val = isNaN(Number(e.target.value)) ? 0 : Number(e.target.value)
+          setInventory({ ...inventory, price: val })
+        }} />
+      </div>
+      <div className='flex flex-col gap-2'>
+        <Label>Tutar</Label>
+        <Label>{moneyFormat(inventory?.total || 0, 2)}</Label>
       </div>
     </div>
     <div className='flex justify-end'>
