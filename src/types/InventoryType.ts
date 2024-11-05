@@ -1,4 +1,5 @@
 import { DespatchType } from './DespatchType'
+import { Item } from './Item'
 
 export interface InventoryType {
   _id?: string
@@ -7,6 +8,7 @@ export interface InventoryType {
   issueDate?: string
   issueTime?: string
   description?: string
+  item?: Item
   quantity?: number
   thickness?: number
   width?: number

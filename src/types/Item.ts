@@ -9,5 +9,6 @@ export interface Item {
   description?: string
   vatRate?: number
   withHoldingTaxRate?: number
+  unit?: string
   passive?: boolean
 }

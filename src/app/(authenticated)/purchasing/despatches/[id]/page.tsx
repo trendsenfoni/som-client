@@ -1,6 +1,6 @@
 "use client"
 
-import DespatchForm from '@/app/(authenticated)/(components)/despatch-form'
+import { DespatchForm } from '@/app/(authenticated)/(components)/despatch-form'
 import { BreadcrumbAbi } from '@/components/breadcrumb'
 
 interface Props {

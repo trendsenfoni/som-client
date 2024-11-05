@@ -16,11 +16,13 @@ import { ButtonConfirm } from '@/components/button-confirm'
 import { BreadcrumbAbi } from '@/components/breadcrumb'
 import { DespatchType } from '@/types/DespatchType'
 import { ComboboxFirmList } from './combobox-firms'
+import { AddressInputPanel } from './address-inputpanel'
+import { DespatchInventoryLines } from './despatch-inventoryLines'
 interface Props {
   despatchId?: string,
   ioType?: number | 0 | 1
 }
-export default function DespatchForm({ despatchId, ioType }: Props) {
+export function DespatchForm({ despatchId, ioType }: Props) {
   const router = useRouter()
   const { toast } = useToast()
   const [token, setToken] = useState('')
@@ -58,7 +60,10 @@ export default function DespatchForm({ despatchId, ioType }: Props) {
       if (despatchId != 'addnew') {
         setLoading(true)
         getItem(`/db/despatches/${despatchId}`, token)
-          .then(result => setDespatch(result as DespatchType))
+          .then(result => {
+            console.log(result as DespatchType)
+            setDespatch(result as DespatchType)
+          })
           .catch(err => toast({ title: 'Error', description: err || '', variant: 'destructive' }))
           .finally(() => setLoading(false))
       }
@@ -68,8 +73,8 @@ export default function DespatchForm({ despatchId, ioType }: Props) {
     {!loading &&
       <div className="">
 
-        <div className="grid gap-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className=''>
               <Label>{despatch.ioType == 0 ? 'Müşteri' : 'Tedarikçi'}</Label>
               <ComboboxFirmList width='w-[300px]' type={despatch.ioType == 0 ? 'customer' : 'vendor'} defaultValue={despatch.firm} onChange={e => {
@@ -88,6 +93,12 @@ export default function DespatchForm({ despatchId, ioType }: Props) {
               </div>
 
             </div>
+          </div>
+          <div>
+            <AddressInputPanel defaultValue={despatch.address} onChange={e => setDespatch({ ...despatch, address: e })} />
+          </div>
+          <div className='border border-dashed rounded-md p-2'>
+            <DespatchInventoryLines despatch={despatch} />
           </div>
         </div >
         <div className='w-full flex flex-row justify-between gap-4 mt-4'>
@@ -119,3 +130,4 @@ export default function DespatchForm({ despatchId, ioType }: Props) {
     }
   </>)
 }
+
